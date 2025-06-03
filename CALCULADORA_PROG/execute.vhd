@@ -20,7 +20,7 @@ architecture a_execute of execute is
     component ula is port (
         inputA:              in unsigned(15 downto 0);
         inputB:              in unsigned(15 downto 0);
-        operation:          in unsigned(1 downto 0);
+        selec_op:          in unsigned(1 downto 0);
         result:             out unsigned(15 downto 0);
         flag_overflow:      out std_logic;
         flag_carry:         out std_logic;
@@ -33,7 +33,7 @@ begin
     ula_uut: ula port map (
         inputA => inputA,
         inputB => inputB,
-        operation => operation,
+        selec_op  => operation,
         result => result,
         flag_overflow => overflow_flag,
         flag_carry => carry_flag,

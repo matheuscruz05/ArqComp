@@ -30,8 +30,8 @@ architecture a_processador of processador is
             wr_pc           : out std_logic;
             jump_en         : out std_logic;
             operation       : out unsigned(1 downto 0);
-            entr1           : out unsigned(15 downto 0);
-            entr0           : out unsigned(15 downto 0);
+            inputA            : out unsigned(15 downto 0);
+            inputB            : out unsigned(15 downto 0);
             ula_out         : in unsigned(15 downto 0)
         );
     end component;
@@ -40,8 +40,8 @@ architecture a_processador of processador is
         port (
             clk             : in std_logic;
             rst             : in std_logic;
-            entr0           : in unsigned(15 downto 0);
-            entr1           : in unsigned(15 downto 0);
+            inputA            : in unsigned(15 downto 0);
+            inputB          : in unsigned(15 downto 0);
             operation       : in unsigned(1 downto 0);
             result          : out unsigned(15 downto 0)
         );
@@ -51,7 +51,7 @@ architecture a_processador of processador is
     signal instruction              : unsigned(16 downto 0);
     signal result                   : unsigned(15 downto 0);
     signal operation                : unsigned(1 downto 0);
-    signal entr1, entr0             : unsigned(15 downto 0);
+    signal inputA , inputB             : unsigned(15 downto 0);
     signal jump_en                  : std_logic;
 
 begin
@@ -73,16 +73,16 @@ begin
         jump_en => jump_en,
         instruction => instruction,
         operation => operation,
-        entr1 => entr1,
-        entr0 => entr0,
+        inputA  => inputA ,
+        inputB => inputB,
         ula_out => result
     );
 
     execute_uut : execute port map(
         clk => clk,
         rst => rst,
-        entr0 => entr0,
-        entr1 => entr1,
+        inputA  => inputA ,
+        inputB => inputB,
         operation => operation,
         result => result
     );    

@@ -19,17 +19,16 @@ end entity;
 
 architecture a_decode of decode is
 
-    component uc is port (
-        clk             : in std_logic;
-        rst             : in std_logic;
-        instruction     : in unsigned(13 downto 0);
-        rd_rom          : out std_logic;
-        wr_banco        : out std_logic;
-        wr_pc           : out std_logic;
+    component uc is   port (
+        clk         : in std_logic;
+        rst         : in std_logic;
+        instr       : in unsigned(13 downto 0);
+        pc_wr_en    : out std_logic;
+        jump_en     : out std_logic;
         mov_a_reg       : out std_logic;
         mov_reg_a       : out std_logic;
         op_ula          : out std_logic;
-        jump_en         : out std_logic;
+        wr_banco        : out std_logic;
         operation       : out unsigned(1 downto 0);
         is_nop          : out std_logic
     );
@@ -69,10 +68,9 @@ begin
     uc_uut : uc port map(
         clk => clk,
         rst => rst,
-        instruction => instruction,
-        rd_rom => rd_rom,
+        instr => instruction,
         wr_banco => wr_banco,
-        wr_pc => wr_pc,
+        pc_wr_en => wr_pc,
         mov_a_reg => mov_a_reg,
         mov_reg_a => mov_reg_a,
         op_ula => op_ula,

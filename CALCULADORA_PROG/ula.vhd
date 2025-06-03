@@ -49,7 +49,7 @@ begin
 
     -- Flags
     flag_zero     <= '1' when internal_result = 0 else '0';
-    flag_negative <= internal_result(15);
+
 
     -- Carry e Overflow são válidos apenas para soma e subtração
     carry_aux <= '1' when (selec_op = "00" and sum < inputA) or
