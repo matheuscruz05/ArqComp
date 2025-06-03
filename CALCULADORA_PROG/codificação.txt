@@ -1,0 +1,46 @@
+dddd  identifica o registrador destino
+ssss  identifica o registrador fonte
+cccc identifica a constante de 4 bits em complemento de 2
+xxxx é irrelevante
+a    identifica se o registrador de destino é o acumulador (1) ou registrador (0)
+
+MSB b14                   b0 LSB
+      |                   |
+ADD:  0100 a ssss xxxx xx
+SUB:  0110 a dddd ssss cc
+LD:   0010 a dddd xxxx xx
+JUMP: 1010 a xccc cccc xx
+MOV:  0011 a ssss xxxx xx
+NOP:  0000 x xxxx xxxx xx
+
+/////////////////////////////////////////////
+| Bits      | Significado                   |
+| --------- | ----------------------------- |
+| `[13:10]` | `opcode` (4 bits)             |
+| `[9]`     | `a` (1 bit)                   |
+| `[8:5]`   | registrador fonte/destino     |
+| `[4:1]`   | registrador ou constante (4b) |
+| `[0]`     | irrelevante ou reservado      |
+
+ADD:   0100_a_ssss_xx_xx
+SUB:   0110_a_dddd_ssss_cc
+LD:    0010_a_dddd_xx_xx
+JUMP:  1010_a_cccc_cccc_xx
+MOV:   0011_a_ssss_xx_xx
+
+
+0  => B"0010_0_0011_01010", -- LD R3, 5         | opcode=0010 a=0 dddd=0011 cccc=0101
+1  => B"0010_0_0100_01000", -- LD R4, 8         | opcode=0010 a=0 dddd=0100 cccc=1000
+2  => B"0011_1_0011_00000", -- MOV A, R3        | opcode=0011 a=1 ssss=0011
+3  => B"0100_1_0100_00000", -- ADD A, R4        | opcode=0100 a=1 ssss=0100
+4  => B"0011_0_0101_00000", -- MOV R5, A        | opcode=0011 a=0 dddd=0101
+5  => B"0010_0_0111_00001", -- LD R7, 1         | opcode=0010 a=0 dddd=0111 cccc=0001
+6  => B"0110_1_0111_00000", -- SUB A, R7        | opcode=0110 a=1 dddd=0111
+7  => B"0011_0_0101_00000", -- MOV R5, A        | opcode=0011 a=0 dddd=0101
+8  => B"1010_0_0001_01000", -- JUMP 20          | opcode=1010 a=0 addr=000010100
+9  => B"0010_0_0101_00000", -- LD R5, 0         | opcode=0010 a=0 dddd=0101 cccc=0000
+20 => B"0011_1_0101_00000", -- MOV A, R5        | opcode=0011 a=1 ssss=0101
+21 => B"0011_0_0011_00000", -- MOV R3, A        | opcode=0011 a=0 dddd=0011
+22 => B"1010_0_0000_00010", -- JUMP 2           | opcode=1010 a=0 addr=000000010
+23 => B"0010_0_0011_00000", -- LD R3, 0         | opcode=0010 a=0 dddd=0011 cccc=0000
+

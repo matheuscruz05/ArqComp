@@ -1,0 +1,10 @@
+v 4
+file / "g:\My Drive\UTFPR\ARQ COMP\ArqComp\CALCULADORA_PROG\execute.vhd" "454433e91758b5f114a238f1b5d91caa57efc97c" "20250603023253.846":
+  entity execute at 1( 0) + 0 on 15;
+  architecture a_execute of execute at 16( 407) + 0 on 16;
+file / "g:\My Drive\UTFPR\ARQ COMP\ArqComp\CALCULADORA_PROG\decode.vhd" "956237bab5120269538caa61c6a8d521f4edc491" "20250603023226.927":
+  entity decode at 1( 0) + 0 on 11;
+  architecture a_decode of decode at 20( 584) + 0 on 12;
+file / "g:\My Drive\UTFPR\ARQ COMP\ArqComp\CALCULADORA_PROG\fetch.vhd" "73309a8c07c37779a4c039c58a6ecb0765290011" "20250603023244.839":
+  entity fetch at 1( 0) + 0 on 13;
+  architecture a_fetch of fetch at 16( 393) + 0 on 14;
