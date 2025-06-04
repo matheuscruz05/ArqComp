@@ -6,12 +6,12 @@ a    identifica se o registrador de destino é o acumulador (1) ou registrador (
 
 MSB b14                   b0 LSB
       |                   |
-ADD:  0100 a ssss xxxx xx
-SUB:  0110 a dddd ssss cc
-LD:   0010 a dddd xxxx xx
-JUMP: 1010 a xccc cccc xx
-MOV:  0011 a ssss xxxx xx
-NOP:  0000 x xxxx xxxx xx
+ADD:  0100 a ssss xx xxxx
+SUB:  0110 a dddd ss cccc
+LD:   0010 a dddd xx xxxx
+JUMP: 1010 a xxxx xc cccc
+MOV:  0011 a ssss xx xxxx
+NOP:  0000 x xxxx xx xxxx
 
 /////////////////////////////////////////////
 | Bits      | Significado                   |

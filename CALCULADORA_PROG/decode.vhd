@@ -39,8 +39,8 @@ architecture a_decode of decode is
         rst:            in std_logic;
         wr_en:          in std_logic;
         data_wr:        in unsigned(15 downto 0);
-        reg_wr:         in unsigned(3 downto 0);
-        sel_reg:        in unsigned(3 downto 0);
+        reg_wr:         in unsigned(2 downto 0);
+        sel_reg:        in unsigned(2 downto 0);
         data_out:       out unsigned(15 downto 0)
     );
     end component;
@@ -86,8 +86,8 @@ begin
         rst => rst,
         wr_en => wr_banco,
         data_wr => value_wr_banco,
-        reg_wr => instruction(11 downto 8),
-        sel_reg => instruction(11 downto 8),
+        reg_wr => instruction(8 downto 6),
+        sel_reg => instruction(8 downto 6),
         data_out => banco_out
     );
 

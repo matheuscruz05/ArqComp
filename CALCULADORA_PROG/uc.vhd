@@ -48,6 +48,7 @@ begin
 
     mov_a_reg <= '1' when opcode = "0011" and estado = "01" and instr(9) = '1' and rst = '0' else '0';
     mov_reg_a_s <= '1' when opcode = "0011" and estado = "01" and instr(9) = '0' and rst = '0' else '0';
+
     mov_reg_a <= mov_reg_a_s;
 
     op_ula <= '1' when (opcode = "0100" and estado = "10") or (opcode = "0110" and estado = "10") else '0';

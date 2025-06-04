@@ -17,7 +17,7 @@ architecture a_processador of processador is
             rd_rom              : in std_logic;
             wr_pc               : in std_logic;
             jump_en             : in std_logic;
-            instruction         : out unsigned(16 downto 0)
+            instruction         : out unsigned(13 downto 0)
         );
     end component;
 
@@ -25,7 +25,7 @@ architecture a_processador of processador is
         port (
             clk             : in std_logic;
             rst             : in std_logic;
-            instruction     : in unsigned(16 downto 0);
+            instruction     : in unsigned(13 downto 0);
             rd_rom          : out std_logic;
             wr_pc           : out std_logic;
             jump_en         : out std_logic;
@@ -48,7 +48,7 @@ architecture a_processador of processador is
     end component;
 
     signal wr_pc, rd_rom            : std_logic;
-    signal instruction              : unsigned(16 downto 0);
+    signal instruction              : unsigned(13 downto 0);
     signal result                   : unsigned(15 downto 0);
     signal operation                : unsigned(1 downto 0);
     signal inputA , inputB             : unsigned(15 downto 0);

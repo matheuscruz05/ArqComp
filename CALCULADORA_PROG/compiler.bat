@@ -16,4 +16,4 @@ gtkwave %TESTBENCH%.ghw
 
 :: Limpa arquivos gerados
 del /f /q work-obj93.cf
-del /f /q %TESTBENCH%.ghw
+
