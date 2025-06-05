@@ -18,8 +18,8 @@ NOP:  0000 x xxx xxx xxx
 3    MOV A, R3
 4    ADD A, R4
 5    MOV R5, A
-6    LD R7, 1
-7    SUB A, R7
+6    LD R1, 1
+7    SUB A, R1
 8    MOV R5, A
 9    JUMP 20
 20   LD R5, 0
