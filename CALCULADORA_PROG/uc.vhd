@@ -42,7 +42,6 @@ begin
 
     opcode <= instr(13 downto 10);
 
-    -- JUMP apenas se opcode = 1111 e em estado decode
     is_nop_s <= '1' when opcode = "0000" and estado = "01" else '0';
 
 
