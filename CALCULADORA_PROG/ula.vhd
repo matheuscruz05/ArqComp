@@ -31,19 +31,19 @@ begin
     subtracao_17b <= ('0' & inputA) - ('0' & inputB);
 
     -- Multiplexador de operação
-    with selec_op select
-        internal_result <= sum           when "00",  -- ADD
-                           sub           when "01",  -- SUB
-                           (others => '0') when "10", -- SUBI / CMPI (sem saída)
-                           (others => '0') when "11", -- CMPI
-                           (others => '0');           -- default
+with selec_op select
+    internal_result <= sum            when "00",  -- ADD
+                       sub            when "01",  -- SUB
+                       (others => '0') when "10",  -- SUBI / CMPI (sem saída)
+                       (others => '0') when "11",  -- CMPI
+                       (others => '0') when others;
+
 
     result <= internal_result;
 
     -- Zero flag
     flag_zero <= '1' when internal_result = 0 else '0';
-    soma_17b <= ('0' & inputA) + ('0' & inputB);
-    subtracao_17b <= ('0' & inputA) - ('0' & inputB);
+
 
     -- Carry flag
     flag_carry <=

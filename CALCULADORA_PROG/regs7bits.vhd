@@ -15,16 +15,15 @@ end entity;
 architecture a_regs7bits of regs7bits is
     signal registro: unsigned(6 downto 0);
 begin
-    process(clk, rst)
+     process(clk, rst, wr_en)
     begin
         if rst = '1' then
             registro <= "0000000";
-        elsif rising_edge(clk) then
-            if wr_en = '1' then
+        elsif wr_en = '1' then
+            if rising_edge(clk) then
                 registro <= data_in;
             end if;
         end if;
     end process;
-
     data_out <= registro;
 end architecture;

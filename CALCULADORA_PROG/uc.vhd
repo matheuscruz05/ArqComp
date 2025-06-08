@@ -45,15 +45,15 @@ begin
     is_nop_s <= '1' when opcode = "0000" and estado = "01" else '0';
 
 
-    mov_a_reg <= '1' when opcode = "0011" and estado = "01" and instr(9) = '1' and rst = '0' else '0';
-    mov_reg_a_s <= '1' when opcode = "0011" and estado = "01" and instr(9) = '0' and rst = '0' else '0';
+    mov_a_reg <= '1' when opcode = "0011" and estado = "01" and instr(9) = '1' else '0';
+    mov_reg_a_s <= '1' when opcode = "0011" and estado = "01" and instr(9) = '0'  else '0';
 
     mov_reg_a <= mov_reg_a_s;
 
     op_ula <= '1' when (opcode = "0100" and estado = "10") or (opcode = "0110" and estado = "10") else '0';
 
-    wr_banco <= '1' when ((opcode = "0010" and estado = "01" and rst = '0') or mov_reg_a_s = '1') and is_nop_s = '0' else '0';
-    pc_wr_en <= '1' when estado = "00" and rst = '0' else '0';
+    wr_banco <= '1' when ((opcode = "0010" and estado = "01") or mov_reg_a_s = '1') and is_nop_s = '0' else '0';
+    pc_wr_en <= '1' when estado = "00"  else '0';
 
     jump_en <= '1' when opcode = "1010" and estado = "01" else '0';
 
@@ -63,5 +63,6 @@ begin
                     "11";                                           -- CMPR
 
     is_nop <= is_nop_s;
-
+    
+--IGNORA RESET
 end architecture;

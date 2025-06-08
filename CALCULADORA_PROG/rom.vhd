@@ -11,7 +11,7 @@ entity rom is
 end entity;
 
 architecture a_rom of rom is
-    type mem is array (0 to 127) of unsigned(13 downto 0);
+     type mem is array (0 to 127) of unsigned(13 downto 0);
       constant conteudo_rom: mem := (
                 0  => B"0010_0_011_000101",  -- LD R3, 5
                 1  => B"0010_0_100_001000",  -- LD R4, 8
@@ -29,7 +29,6 @@ architecture a_rom of rom is
                 23 => B"0010_0_011_000000",  -- LD R3, 0
                 others => (others => '0')
     );
-
 begin
     process(clk)
     begin

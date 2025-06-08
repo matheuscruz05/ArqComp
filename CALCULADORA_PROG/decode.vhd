@@ -78,8 +78,10 @@ begin
         operation => operation,
         is_nop => is_nop
     );
-    -- TODO arrumar a constante positiva e negativa
-    value_wr_banco <= acum_out when mov_reg_a = '1' else "111111111" & instruction(6 downto 0);
+
+     value_wr_banco <= acum_out when mov_reg_a = '1' else "0000000000" & instruction(5 downto 0);
+
+
 
     banco_uut : banco_regs port map (
         clk => clk,
