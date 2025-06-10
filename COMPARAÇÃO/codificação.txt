@@ -1,0 +1,29 @@
+dddd  identifica o registrador destino
+ssss  identifica o registrador fonte
+cccc identifica a constante de 4 bits em complemento de 2
+xxxx é irrelevante
+a    identifica se o registrador de destino é o acumulador (1) ou registrador (0)
+
+MSB b14                   b0 LSB
+      |                   |
+ADD:  0100 a sss xxx xxx
+SUB:  0110 a ddd sss ccc
+LD:   0010 a ddd ccc ccc
+JUMP: 1010 a xxx ccc ccc
+MOV:  0011 a sss xxx xxx
+NOP:  0000 x xxx xxx xxx
+
+1    LD R3, 5
+2    LD R4, 8
+3    MOV A, R3
+4    ADD A, R4
+5    MOV R5, A
+6    LD R1, 1
+7    SUB A, R1
+8    MOV R5, A
+9    JUMP 20
+20   LD R5, 0
+21   MOV A, R5
+22   MOV R3, A
+23   JUMP 2 
+24   LD R3, 0

@@ -1,0 +1,43 @@
+v 4
+file . "ula.vhd" "e12516513750707ebf67cc05082174dc87a9096c" "20250606190035.254":
+  entity ula at 1( 0) + 0 on 11;
+  architecture a_ula of ula at 16( 565) + 0 on 12;
+file . "uc.vhd" "b46d0a00d47c315776cf237183792fc9f38a3f97" "20250606190035.259":
+  entity uc at 1( 0) + 0 on 13;
+  architecture a_uc of uc at 21( 585) + 0 on 14;
+file . "rom.vhd" "e1b25bb7f785c61c897456fc05d1a1fcc2becee3" "20250606190035.263":
+  entity rom at 1( 0) + 0 on 15;
+  architecture a_rom of rom at 13( 252) + 0 on 16;
+file . "fetch.vhd" "0937b96b5824559737be1567d1093a31e1cb5042" "20250606190035.267":
+  entity fetch at 1( 0) + 0 on 17;
+  architecture a_fetch of fetch at 16( 393) + 0 on 18;
+file . "decode.vhd" "69e5f2e55b3b4142f483ddefe7abcc957cb19cc0" "20250606190035.271":
+  entity decode at 1( 0) + 0 on 19;
+  architecture a_decode of decode at 20( 584) + 0 on 20;
+file . "banco_regs.vhd" "f902658ad411ed78432b78073fb79678319b9265" "20250606190035.276":
+  entity banco_regs at 1( 0) + 0 on 21;
+  architecture a_banco_regs of banco_regs at 17( 617) + 0 on 22;
+file . "processador.vhd" "93187da9eb08e7cd34f329da2afb314c5062a964" "20250606190035.280":
+  entity processador at 1( 0) + 0 on 23;
+  architecture a_processador of processador at 12( 202) + 0 on 24;
+file . "execute.vhd" "a556cb75ac338a3d02000396406c808dfab30f80" "20250606190035.284":
+  entity execute at 1( 0) + 0 on 25;
+  architecture a_execute of execute at 16( 407) + 0 on 26;
+file . "acumulador.vhd" "ab1cf14c57353e4c90db9bf62a22928cde729926" "20250606190035.289":
+  entity acumulador at 1( 0) + 0 on 27;
+  architecture a_acumulador of acumulador at 15( 437) + 0 on 28;
+file . "state_machine.vhd" "f2b7bcde1183896907617b3026b180c9e6628537" "20250606190035.293":
+  entity state_machine at 1( 0) + 0 on 29;
+  architecture a_state_machine of state_machine at 13( 232) + 0 on 30;
+file . "regs16bits.vhd" "acd8df3aee11e127ec98199811cefbf616afb536" "20250606190035.297":
+  entity regs16bits at 1( 0) + 0 on 31;
+  architecture a_regs16bits of regs16bits at 15( 330) + 0 on 32;
+file . "processador_tb.vhd" "3d03bd4deb44aa1dc846165b5ddf0d6318ecb4c4" "20250606190035.368":
+  entity processador_tb at 1( 0) + 0 on 39;
+  architecture a_processador_tb of processador_tb at 8( 101) + 0 on 40;
+file . "pc.vhd" "5757ceae555420bbb4cf6636bb072ae02aa1c6d7" "20250606190035.306":
+  entity pc at 1( 0) + 0 on 35;
+  architecture a_pc of pc at 15( 321) + 0 on 36;
+file . "regs7bits.vhd" "f1e13f296e66858afbfc1d943f1d98892afc8ead" "20250606190035.310":
+  entity regs7bits at 1( 0) + 0 on 37;
+  architecture a_regs7bits of regs7bits at 15( 327) + 0 on 38;
