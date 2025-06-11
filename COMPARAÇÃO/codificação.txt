@@ -12,18 +12,18 @@ LD:   0010 a ddd ccc ccc
 JUMP: 1010 a xxx ccc ccc
 MOV:  0011 a sss xxx xxx
 NOP:  0000 x xxx xxx xxx
+MOV:  1000 a ddd sss xxx (MOV R,R)
+BCS:  1011 a xxx ccc ccc
 
-1    LD R3, 5
-2    LD R4, 8
-3    MOV A, R3
-4    ADD A, R4
-5    MOV R5, A
-6    LD R1, 1
-7    SUB A, R1
-8    MOV R5, A
-9    JUMP 20
-20   LD R5, 0
-21   MOV A, R5
-22   MOV R3, A
-23   JUMP 2 
-24   LD R3, 0
+0   LD R3, 0
+1   LD R4, 0
+2   MOV A, R3
+3   ADD A, R4
+4   MOV R4, A
+5   MOV A, R3
+6   LD R3, 1
+7   ADD A, R3
+8   MOV R3, A
+9   SUBI A, 30
+10  BCS -9
+11  MOV R5, R4

@@ -34,7 +34,7 @@ architecture a_uc of uc is
     signal opcode  : unsigned(3 downto 0);
     signal mov_reg_a_s,mov_reg_reg : std_logic;
     signal is_nop_s : std_logic;
-    signal blo_s: std_logic;
+    signal bcs: std_logic;
 begin
 
      state_machine_uut: state_machine port map(
@@ -69,19 +69,17 @@ begin
     wr_banco <= '1' when ((opcode = "0010" and estado = "01" and rst = '0') or mov_reg_a_s = '1' or mov_reg_reg = '1') and is_nop_s = '0' else '0';
     pc_wr_en <= '1' when estado = "00" and rst = '0' else '0';
 
-     -- condiction BLO: A < 0
-    blo_s <= '1' when (opcode="1011" and carry_flag = '1' and estado="10") else '0';
+    bcs <= '1' when (opcode="1011" and carry_flag = '1' and estado="10") else '0';
 
-    -- jumps enable
-    -- jumps enable
+
     jump_abs <= '1' when (estado = "01" and opcode = "1010") else '0';
-    jump_en <= '1' when (blo_s='1') else '0';
+    jump_en <= '1' when (bcs='1') else '0';
 
 
     operation <=    "00" when opcode = "0100" and estado = "10" else -- ADD
                     "01" when opcode = "0110" and estado = "10" else -- SUB
                     "10" when opcode = "0101" and estado = "10" else -- SUBI
-                    "11";                                           -- CMPR
+                    "11";                                           -- CMPI
 
     is_nop <= is_nop_s;
     
