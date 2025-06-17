@@ -23,8 +23,8 @@ architecture a_rom of rom is
                 7  => B"0100_1_011_000001",  -- ADD A,R3
                 8  => B"0011_0_011_000000",  -- MOV R3,A
                 9  => B"0101_1_000_011110",  -- SUBI A,30
-                10 => B"1011_0_011_110111",  -- BCS (A < 0),-9(volta 9 endereços) -- BRANCH
-                11 => B"1000_0_100_000101",  -- MOV R5,R4
+                10 => B"1011_0_011_111000",  -- BCS (CARRY=1),-9=8(volta 8 endereços) -- BRANCH
+                11 => B"1000_0_100_101000",  -- MOV R5,R4
                 others => (others => '0')
     );
 begin

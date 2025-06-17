@@ -57,7 +57,7 @@ begin
 
     instruction <= instruction_s;
     wr_pc_s <= '1' when wr_pc = '1' or jump_en = '1' else '0';
-    inst<=instruction_s(5 downto 0);
+  
 
     data_in_pc <=   '0' & instruction_s(5 downto 0) when jump_abs='1' else
                     data_out_pc + ('1' & instruction_s(5 downto 0)) when jump_en='1' else 

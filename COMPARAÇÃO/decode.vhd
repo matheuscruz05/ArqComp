@@ -64,7 +64,7 @@ architecture a_decode of decode is
     signal banco_out: unsigned(15 downto 0);
     signal data_in_ula: unsigned(15 downto 0);
     signal value_wr_banco: unsigned(15 downto 0);
-    signal op_ula,op_const : std_logic;
+    signal op_ula,op_const,mov_test : std_logic;
     signal wr_acum, wr_banco : std_logic;
     signal acum_in, acum_out: unsigned(15 downto 0);
     signal is_nop: std_logic;
@@ -90,12 +90,12 @@ begin
    
     );
 
-
+     mov_test<=  mov_reg(0); 
      value_wr_banco <=   acum_out when mov_reg(1) = '1' else 
                         banco_out when mov_reg(0) = '1' else
-                        "0000000000" & instruction(5 downto 0);
+                        (15 downto 6 => instruction(5)) & instruction(5 downto 0);
                         
-    reg_wr <= instruction(8 downto 6) when mov_reg(0) = '0' else instruction(7 downto 5);
+    reg_wr <= instruction(8 downto 6) when mov_reg(0) = '0' else instruction(5 downto 3);
 
     banco_uut : banco_regs port map (
         clk => clk,
@@ -120,10 +120,8 @@ begin
         data_out => acum_out
     );
 
-    --entr0 <= acum_out when op_ula = '1' else "0000000000000000";
-    --entr1 <= banco_out when op_ula = '1' else "0000000000000000";
 
     inputA <= acum_out;
-    inputB <= "0000000000" & instruction(5 downto 0) when op_const = '1' else banco_out;
+    inputB <= (15 downto 6 => instruction(5)) & instruction(5 downto 0) when op_const = '1' else banco_out;
 
 end architecture;
