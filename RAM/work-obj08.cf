@@ -1,7 +1,0 @@
-v 4
-file / "g:\My Drive\UTFPR\ARQ COMP\ArqComp\RAM\cmpi.vhd" "292e11f27db62c3d2aa5e22f3927bc0d55a1b354" "20250617013343.863":
-  entity cmpi at 1( 0) + 0 on 15;
-  architecture a_cmpi of cmpi at 17( 436) + 0 on 16;
-file / "g:\My Drive\UTFPR\ARQ COMP\ArqComp\RAM\execute.vhd" "7e2012b7d7c2c299e4b6e8170ca07e9ad5109f01" "20250617013312.239":
-  entity execute at 1( 0) + 0 on 13;
-  architecture a_execute of execute at 23( 712) + 0 on 14;

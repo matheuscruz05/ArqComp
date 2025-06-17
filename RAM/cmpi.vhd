@@ -7,7 +7,8 @@ entity cmpi is
         clk           : in std_logic;
         rst           : in std_logic;
         wr_en         : in std_logic;
-        a_in          : in signed(15 downto 0);  -- valor a ser comparado
+        IMM_VAL       : in signed(15 downto 0);
+        a_in          : in signed(15 downto 0); 
         carry_out     : out std_logic;
         overflow_out  : out std_logic;
         zero_out      : out std_logic
@@ -15,7 +16,6 @@ entity cmpi is
 end entity;
 
 architecture a_cmpi of cmpi is
-    constant IMM_VAL : signed(15 downto 0) := to_signed(42, 16);  -- valor imediato
     signal result    : signed(16 downto 0);  -- 1 bit extra para verificar carry
     signal zero_s, carry_s, overflow_s : std_logic;
 begin

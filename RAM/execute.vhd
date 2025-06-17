@@ -67,6 +67,7 @@ architecture a_execute of execute is
             clk           : in std_logic;
             rst           : in std_logic;
             wr_en         : in std_logic;
+            IMM_VAL       : in signed(15 downto 0);
             a_in          : in signed(15 downto 0);
             carry_out     : out std_logic;
             overflow_out  : out std_logic;
@@ -104,6 +105,7 @@ begin
             clk           => clk,
             rst           => rst,
             wr_en         => wr_cmpi,
+            IMM_VAL       => signed(inputB),
             a_in          => signed(inputA),  -- converte inputA para signed(15 downto 0)
             carry_out     => carry_flag_cmpi,
             overflow_out  => overflow_flag_cmpi,
@@ -113,7 +115,9 @@ begin
     -- Seleção das flags: se wr_cmpi = '1', usa flags da cmpi; senão, da ula
     carry_selected <= carry_flag_cmpi when wr_cmpi = '1' else carry_flag_ula;
     zero_selected  <= zero_flag_cmpi  when wr_cmpi = '1' else zero_flag_ula;
-    wr_flag_mux <= wr_flag or wr_cmpi;    
+    wr_flag_mux <= wr_flag or wr_cmpi;  
+    
+    
     -- Registro das flags
     regs_carry_flag: regsflag
         port map (

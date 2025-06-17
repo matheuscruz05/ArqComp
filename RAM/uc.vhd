@@ -56,19 +56,22 @@ begin
 
     
    
+   
+    wr_flag <= '1' when ((opcode="0100" or opcode="0101" or opcode="0110" or opcode="1100") and (
+        estado="10" or estado="00")) else '0';
+   
     wr_ram <= '1' when estado = "10" and opcode = "0001" else '0';
     wr_acum <= '1' when (((mov_a_reg_s='1' or op_ula_s='1') and is_nop_s='0') or ((opcode="0001" or opcode="0111") and estado="10")) else '0';
 
-    wr_flag <= '1' when ((opcode="0100" or opcode="0101" or opcode="0110" or opcode="1100") and estado="10") else '0';
-   
+    -- fetch
     is_nop_s <= '1' when opcode = "0000" and estado = "01" else '0';
-
     rd_rom <= '1' when estado = "00" else '0';
 
-    mov_reg_a_s <= '1' when opcode = "0011" and estado = "01" and instr(9) = '0'  else '0';
+    mov_reg_a_s <= '1' when opcode = "0011" and estado = "01" and instr(9) = '0' and rst = '0' else '0';
     mov_reg_reg <= '1' when estado = "01" and opcode = "1000" else '0';
-    mov_a_reg_s <= '1' when (opcode = "0011" and estado = "01" and instr(9) = '1') else '0';
+    mov_a_reg_s <= '1' when (opcode = "0011" and estado = "01" and instr(9) = '1' and rst = '0') else '0';
     mov_a_ram   <= '1' when (opcode = "0111" and estado = "10") else '0'; 
+
 
 
 
@@ -83,10 +86,12 @@ begin
     op_ula <= '1' when estado = "10" and (opcode = "0100" or opcode = "0110" or opcode = "0101") else '0';
     op_const <= '1' when opcode = "0101" else '0';
 
-     wr_banco <= '1' when ((opcode = "0010" and estado = "01" and rst = '0') or mov_reg_a_s = '1' or mov_reg_reg = '1') and is_nop_s = '0' else '0';
+    wr_banco <= '1' when ((opcode = "0010" and estado = "01" and rst = '0') or mov_reg_a_s = '1' or mov_reg_reg = '1') and is_nop_s = '0' else '0';
     pc_wr_en <= '1' when estado = "00"  else '0';
 
-    bcs <= '1' when (opcode="1011" and carry_flag = '1' and estado="10") else '0';
+    bcs_s <= '1' when (opcode="1011" and carry_flag = '1' and estado="10") else '0';
+
+    wr_cmpi <= '1' when (opcode="1100" and estado = "10") else '0';
 
     bcs <= bcs_s;   
     jump_abs <= '1' when (estado = "01" and opcode = "1010") else '0';
