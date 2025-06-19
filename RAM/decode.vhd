@@ -34,7 +34,6 @@ architecture a_decode of decode is
         instr       : in unsigned(13 downto 0);
         pc_wr_en    : out std_logic;
         jump_en     : out std_logic;
-        op_ula          : out std_logic;
         wr_banco        : out std_logic;
         operation       : out unsigned(1 downto 0);
         is_nop          : out std_logic;
@@ -84,7 +83,7 @@ architecture a_decode of decode is
     signal is_nop,mov_a_ram: std_logic;
     signal reg_wr: unsigned(2 downto 0);
     signal mov_reg: std_logic_vector(2 downto 0);
-    signal teste : unsigned(5 downto 0);
+   
 begin
 
     uc_uut : uc port map(
@@ -93,7 +92,6 @@ begin
         instr => instruction,
         wr_banco => wr_banco,
         pc_wr_en => wr_pc,
-        op_ula => op_ula,
         jump_en => jump_en,
         operation => operation,
         is_nop => is_nop,
@@ -130,9 +128,9 @@ begin
         data_out => banco_out
     );
 
-       acum_in <=  banco_out when mov_reg(2) = '1' else 
-                data_out_ram when mov_a_ram = '1' else 
-                ula_out;
+       acum_in <=banco_out when mov_reg(2) = '1' else 
+                    data_out_ram when mov_a_ram = '1' else 
+                    ula_out;
 
 
     acum_uut : acumulador port map (
@@ -143,7 +141,7 @@ begin
         data_out => acum_out
     );
 
-    teste<= instruction(5 downto 0);  
+   
     inputA <= acum_out;
     inputB <= (15 downto 6 => instruction(5)) & instruction(5 downto 0) when op_const = '1' else banco_out;
 

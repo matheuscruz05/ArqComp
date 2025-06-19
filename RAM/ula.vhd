@@ -14,7 +14,7 @@ entity ula is
 end entity;
 
 architecture a_ula of ula is
-    signal sum, sub, comp2         : unsigned(15 downto 0);
+    signal sum, sub, comp2,op_and, op_or        : unsigned(15 downto 0);
     signal internal_result         : unsigned(15 downto 0);
     signal soma_17b, subtracao_17b : unsigned(16 downto 0);
 begin
@@ -25,18 +25,19 @@ begin
     -- Subtração (complemento de dois)
     comp2 <= not(inputB) + 1;
     sub <= inputA + comp2;
+    op_and <= inputA and inputB;
+    op_or <= inputA or inputB;
 
     -- Operações expandidas para cálculo de carry
     soma_17b      <= ('0' & inputA) + ('0' & inputB);
     subtracao_17b <= ('0' & inputA) - ('0' & inputB);
 
-    -- Multiplexador de operação
-with selec_op select
-    internal_result <= sum            when "00",  -- ADD
-                       sub            when "01",  -- SUB
-                       sub            when "10",  -- SUBI / CMPI (sem saída)
-                       (others => '0') when "11",  -- CMPI
-                       (others => '0') when others;
+
+    internal_result <= sum when selec_op = "00" else      -- soma
+                sub when selec_op = "01" else      -- subtração
+                op_and when selec_op = "10" else   -- and
+                op_or;                              -- or
+
 
 
     result <= internal_result;

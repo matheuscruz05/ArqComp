@@ -9,7 +9,6 @@ entity uc is
         instr       : in unsigned(13 downto 0);
         pc_wr_en    : out std_logic;
         jump_en     : out std_logic;
-        op_ula          : out std_logic;
         wr_banco        : out std_logic;
         operation       : out unsigned(1 downto 0);
         is_nop          : out std_logic;
@@ -83,7 +82,7 @@ begin
     mov_reg(2) <= mov_a_reg_s;
 
     
-    op_ula <= '1' when estado = "10" and (opcode = "0100" or opcode = "0110" or opcode = "0101") else '0';
+    op_ula_s <= '1' when estado = "10" and (opcode = "0100" or opcode = "0110" or opcode = "0101") else '0';
     op_const <= '1' when opcode = "0101" else '0';
 
     wr_banco <= '1' when ((opcode = "0010" and estado = "01" and rst = '0') or mov_reg_a_s = '1' or mov_reg_reg = '1') and is_nop_s = '0' else '0';

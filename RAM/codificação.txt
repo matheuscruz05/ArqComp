@@ -4,26 +4,49 @@ cccc identifica a constante de 4 bits em complemento de 2
 xxxx é irrelevante
 a    identifica se o registrador de destino é o acumulador (1) ou registrador (0)
 
-MSB b14                   b0 LSB
-      |                   |
+MSB b14                 b0 LSB
+      |                 |
 ADD:  0100 a sss xxx xxx
 SUB:  0110 a ddd sss ccc
+SUBI: 0101 x sss ccc ccc
 LD:   0010 a ddd ccc ccc
 JUMP: 1010 a xxx ccc ccc
 MOV:  0011 a sss xxx xxx
 NOP:  0000 x xxx xxx xxx
-MOV:  1000 a ddd sss xxx (MOV R,R)
-BCS:  1011 a xxx ccc ccc
+MOV:  1000 a ddd sss xxx 
+SW:   0001 x ddd ccc ccc
+LW:   0111 x sss ccc ccc
+BEQ:  1001 x xxx xxx xxx
+BCS:  1011 x xxx xxx xxx
+CMPI: 1100 x sss xxx xxx
 
-0   LD R3, 0
-1   LD R4, 0
-2   MOV A, R3
-3   ADD A, R4
-4   MOV R4, A
-5   MOV A, R3
-6   LD R3, 1
-7   ADD A, R3
-8   MOV R3, A
-9   SUBI A, 30
-10  BCS -9
-11  MOV R5, R4
+0   LD R0,0  
+1   LD R1,1    
+2   LD R5,15   
+3   LD R2,0   
+4   LD R3,1   
+5   MOV A,R0
+6   SW A,0(R2) 
+7   MOV A,R1
+8   SW A,1(R2) 
+9   JUMP 15
+10  LW A,0(R2)
+11  MOV R0,A
+12  LW A,1(R2)
+13  MOV R1,A
+14  JUMP 16
+15  JUMP 10    
+16  MOV A,R0
+17  ADD A,R1
+18  SW A,2(R2)
+19  MOV A,R2
+20  ADD A,R3
+21  MOV R2,A
+22  CMPI A,R5
+23  BCS -9
+24  LW A,0(R3)
+25  MOV R4,A
+26  LW A,4(R3)
+27  ADD A,R4
+28  LW A,0(R4)
+29  SW A,24(R4)

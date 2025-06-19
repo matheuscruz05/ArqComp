@@ -11,6 +11,24 @@ entity rom is
     );
 end entity;
 
+
+-- 0000 NOP
+-- 0001 SW
+-- 0010 LD
+-- 0011 MOV (A,R) or (R,A)
+-- 0100 ADD
+-- 0101 SUBI
+-- 0110 SUB
+-- 0111 LW
+-- 1000 MOV (R,R)
+-- 1001 BEQ
+-- 1010 JUMP
+-- 1011 BCS
+-- 1100 CMPI
+-- 1101
+-- 1110
+-- 1111
+
 architecture a_rom of rom is
      type mem is array (0 to 127) of unsigned(13 downto 0);
       constant conteudo_rom: mem := (
